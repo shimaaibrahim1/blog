@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = User.find().posts.create(post_params)
+    @post = User.find(1).posts.create(post_params)
 
     if @post.persisted?
       redirect_to :posts
