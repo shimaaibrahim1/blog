@@ -1,0 +1,14 @@
+<% if @post.errors.any? %>
+<div class="alert alert-danger">
+<ul>
+    <% @post.errors.full_messages.each do |error| %>
+    <li><%= error%></li> 
+    <% end %>
+</ul>
+</div>
+<% end %>
+<%= form_for(@post , url:@post) do |f| %>
+    <%= f.text_field(:title, class:"form-control" , placeholder:"Tilte.." ) %>
+    <%= f.text_area(:contant, class:"form-control" , placeholder:"Content..") %>
+    <%= submit_tag(btnName, class:"btn btn-#{btnType}")  %>
+<% end %>

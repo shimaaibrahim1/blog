@@ -1,0 +1,30 @@
+<% @posts.each do |post| %>
+<div class="card md-12 mb-3" >
+  <div class="card-body">
+    <h5 class="card-title"><%= post.title %></h5>
+      <p class="card-text"><%= post.contant %></p>
+
+      <%# comment form %>
+<%= form_tag(comments_path(id=post.id), method: "post") do %>
+    <%= text_area_tag(:contant, nil,class:"form-control" , placeholder:"Add Comment....") %>
+  <%= submit_tag("Add Comment", class:"btn btn-success")  %>
+<% end %>
+
+
+<%# comments %>
+<% post.comments.each do |comment| %>
+<div class="card md-12 mb-3" >
+  <div class="card-body">
+    <h5 class="card-title"><%= comment.contant %></h5>
+    <%= link_to 'Delete', comment_path(comment.id) , method: :delete , class:"btn btn-danger" %>
+  </div>
+</div>
+<% end %>
+
+    <a href="<%= edit_post_path(post) %>" class="btn btn-primary">Edit</a>
+    <%= link_to 'Delete', post , method: :delete , class:"btn btn-danger"%>
+  </div>
+</div>
+<% end %>
+
+
